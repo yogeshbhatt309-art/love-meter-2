@@ -1,28 +1,43 @@
-function checkLove() {
-  const yourName = document.getElementById("yourName").value;
-  const crushName = document.getElementById("crushName").value;
+function checkLove(){
+  let name1 = document.getElementById("name1").value.trim();
+  let name2 = document.getElementById("name2").value.trim();
 
-  if (yourName === "" || crushName === "") {
+  if(name1 === "" || name2 === ""){
     alert("Please enter both names ❤️");
     return;
   }
 
-  const lovePercent = Math.floor(Math.random() * 101);
+  // 🔀 RANDOM PERCENT
+  let percent = Math.floor(Math.random() * 101);
 
-  const gifs = [
-    "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
-    "https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif",
-    "https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif",
-    "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
-    "https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif"
+  let result = document.getElementById("result");
+  let gif = document.getElementById("gif");
+
+  // 🔀 RANDOM GIF + MESSAGE DATA
+  const data = [
+    {
+      gif: "gifs/low.gif",
+      msg: "😢 Thoda mushkil hai"
+    },
+    {
+      gif: "gifs/love.gif",
+      msg: "😊 Accha chance hai"
+    },
+    {
+      gif: "gifs/high.gif",
+      msg: "😍 Perfect match!"
+    }
   ];
 
-  const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+  // 🔀 RANDOM PICK
+  let randomPick = data[Math.floor(Math.random() * data.length)];
 
-  const gifElement = document.getElementById("loveGif");
-  gifElement.src = randomGif;
-  gifElement.style.display = "block";
+  // APPLY
+  gif.src = randomPick.gif;
 
-  document.getElementById("result").innerHTML =
-    `${yourName} ❤️ ${crushName}<br>Love is ${lovePercent}% 💕`;
+  result.innerHTML = `
+    ${name1} ❤️ ${name2}<br>
+    💖 Love Percentage: ${percent}%<br>
+    ${randomPick.msg}
+  `;
 }
